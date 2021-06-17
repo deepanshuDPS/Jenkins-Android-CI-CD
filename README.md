@@ -18,7 +18,7 @@ For more info - https://www.jenkins.io/
 
 
 ## Installing jenkins server on Linux/Windows/MacOs
-### Follow all steps as per given in the references and be sure your OS configured with all the requirements.
+#### Follow all steps as per given in the references and be sure your OS configured with all the requirements.
 
 Linux Reference: https://www.jenkins.io/doc/book/installing/linux/
 
@@ -41,14 +41,18 @@ Reference (example ubuntu): https://www.digitalocean.com/community/tutorials/how
 ### Note:
 #### I suggest you to choose " Install suggested plugins " in 'Step 4', when these plugins are installed successfully then we will see what are the remaining plugins we need for our Android build and deployment setup.
 
-Use image
+
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/suggested_plugins.png?raw=true)
+
 
 #### After creating jenkins first admin user and confirming the appropriate information, you are ready to use jenkins.
 
 ### Open browser and enter your " Jenkins Url " to visit the main Jenkins dashboard:
 ##### In my case, I used http://localhost:8080 or http://myIp:8080 ( in your case the jenkins URL may be different )
 
-Use Image
+
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/my_jenkins.jpg?raw=true)
+
 
 ##### Now, after installing suggested plugins successfully, you need some more plugins to generate build or deployment. 
 ###### To Install - Open Jenkins: Manage Jenkins >> Mange Plugins >> Available
@@ -59,6 +63,53 @@ Use Image
   - Google Play Android Publisher Plugin
   - Gradle Plugin
   - Google OAuth Credentials plugin
+
+#### Now, After these installations, we ended up with jenkins setup and plugin.
+
+## Set global variables to jenkins (Configure Jenkins)
+#### In this part, we will explore how to set global variable for our jenkins server to use our path of PC/laptop for gradles and builds.
+
+##### Open Jenkins: Manage Jenkins >> Configure System >> Global properties >> Environment variables and add:
+
+#### ANDROID_HOME
+
+ANDROID_HOME : /var/lib/jenkins/android-sdk
+
+You can download Android sdk on jenkins home path to use above given path 
+
+**Reference**: https://www.serverkaka.com/2019/03/generate-android-apk-from-source-code-jenkins.html
+
+Use Image: 
+
+
+
+and if you have already on your system then use your system path
+
+ANDROID_HOME : /home/deepanshu/Android/Sdk
+
+Use Image:
+
+#### JAVA_HOME
+
+JAVA_HOME : /usr/lib/jvm/java-8-oracle
+
+
+(If you are developing Flutter project then you need to set and configure Flutter Path also)
+
+Use Image:
+
+**Refrence**: https://medium.com/globant/flutter-jenkins-getting-started-4d2e036567b
+
+
+## Now After Global Variables Setup, Start a new Job to build APK
+### Let's Start with Normal Android APK
+
+
+
+
+
+
+
 
 
 
