@@ -31,9 +31,16 @@
 ### Note:
 #### To use gradlew to build apks you have the following dir. and files in root path of repository as shown in picture
 
-  Use image for gradlew directory sample
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/android_build_apk/ad_gradle_structure.png?raw=true)
   
    -  Build  - Choose Execute shell and write these commands
+   
+      ```
+         chmod +x gradlew
+         ./gradlew clean
+         ./gradlew assembleDebug
+      ```
+
    
 ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/android_build_apk/ad_build.png?raw=true)
 
