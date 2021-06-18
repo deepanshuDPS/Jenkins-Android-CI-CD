@@ -79,15 +79,17 @@ You can download Android sdk on jenkins home path to use above given path
 
 **Reference**: https://www.serverkaka.com/2019/03/generate-android-apk-from-source-code-jenkins.html
 
-Use Image: 
 
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/jenkins_android_sdk.png?raw=true)
 
 
 and if you have already on your system then use your system path
 
 ANDROID_HOME : /home/deepanshu/Android/Sdk
 
-Use Image:
+
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/global_properties.png?raw=true)
+
 
 #### JAVA_HOME
 
@@ -96,13 +98,20 @@ JAVA_HOME : /usr/lib/jvm/java-8-oracle
 
 (If you are developing Flutter project then you need to set and configure Flutter Path also)
 
-Use Image:
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/flutter_path.png?raw=true)
 
-**Refrence**: https://medium.com/globant/flutter-jenkins-getting-started-4d2e036567b
+
+**Reference**: https://medium.com/globant/flutter-jenkins-getting-started-4d2e036567b
 
 
 ## Now After Global Variables Setup, Start a new Job to build APK
-### Let's Start with Normal Android APK
+
+#### For Android Build Apk using git repository, visit this branch :
+  https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/tree/android_build_apk
+  
+#### For Flutter Build Apk using git repository, visit this branch :
+  https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/tree/flutter_build_apk
+  
 
 
 
