@@ -1,114 +1,59 @@
-# Jenkins-Android-CI-CD
-### Here are some steps I used for using Jenkins for android build apk/bundle and Deployment to playstore (CI/CD) [Without Pipeline]
+# New Job and Build android Apk
+### Here, we create a new job for our Android application project
 
 
-### First of all, What is jenkins?
-##### Jenkins is a free and open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery.
+#### Dashboard>>New Item>> Enter Item name and select free style project
 
-For more info - https://www.jenkins.io/
-
-### Why we need to build apks/bundle on Jenkins for testing, if we can share apks and bundle with other sharing sources like Google Drive, Clouds etc.?
-##### As of my experience, jenkins gives us a own server of localhost or may be a company/organization server integrated on jenkins. And we use these servers tracking our android build and testing test cases according to requirement within the organization.
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/android_build_apk/ad_new_item.png?raw=true)
 
 
-### Is it the part of Android Application Development?
-##### This is a good question when we are starting android development for ourself not for the organization. But I think it is a good topic for all the developers to learn gradle features of android on this automated server. The main purpose of this topic is to build apk/bundles and deployment of release apks/bundle to play store without signing and opening Google Play Console again and again.
-
-##### If you are interested in learning that how to build apks/bundles and deployment (CI/CD) of application on (Internal/alpha/beta/Production) track of Google play console, I hope this documentation will help you to acheive this task.
+#### Press Ok and Go to Source Code Management -> Check Git and give:
 
 
-## Installing jenkins server on Linux/Windows/MacOs
-#### Follow all steps as per given in the references and be sure your OS configured with all the requirements.
+   -  Repository URL: Git URL to your repo. Take this URL from Github. It should be a format of https://github.com/{username}/{project_name}.git
 
-Linux Reference: https://www.jenkins.io/doc/book/installing/linux/
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/android_build_apk/ad_repository_error.jpg?raw=true)
 
-Windows Reference: https://www.jenkins.io/doc/book/installing/windows/
 
-MacOs Reference: https://www.jenkins.io/doc/book/installing/macos/
+   -  Credentials: Select the one you created now or before. ( username and password of your github account as global properties)
 
-## Steps
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/android_build_apk/ad_add_credentials.png?raw=true)
+
+   -  Branches to build: branch_name (here /main used)
+
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/android_build_apk/ad_choose_credentials.jpg?raw=true)
+
+   -  Additional behavious  - Wipe out repository and force clone the branch before build
+
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/android_build_apk/ad_additional_behaviour.png?raw=true)
   
-  Step 1 — Installing Jenkins 
   
-  Step 2 — Starting Jenkins
-  
-  Step 3 — Opening the Firewall
-  
-  Step 4 — Setting Up Jenkins
-
-Reference (example ubuntu): https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-18-04
-
 ### Note:
-#### I suggest you to choose " Install suggested plugins " in 'Step 4', when these plugins are installed successfully then we will see what are the remaining plugins we need for our Android build and deployment setup.
+#### To use gradlew to build apks you have the following dir. and files in root path of repository as shown in picture
+
+  Use image for gradlew directory sample
+  
+   -  Build  - Choose Execute shell and write these commands
+   
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/android_build_apk/ad_build.png?raw=true)
 
 
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/suggested_plugins.png?raw=true)
+   -  Post Actions  - Choose Archive the artifacts and enter save location for workspace : **/*.apk  and Save.
+
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/android_build_apk/ad_post_actions.png?raw=true)
 
 
-#### After creating jenkins first admin user and confirming the appropriate information, you are ready to use jenkins.
+   -  Build Job  - Now click Build Job in your project, build starts in seconds and you can see logs on clicking jobs in progess
 
-### Open browser and enter your " Jenkins Url " to visit the main Jenkins dashboard:
-##### In my case, I used http://localhost:8080 or http://myIp:8080 ( in your case the jenkins URL may be different )
-
-
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/my_jenkins.jpg?raw=true)
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/android_build_apk/ad_build_job.jpg?raw=true)
 
 
-##### Now, after installing suggested plugins successfully, you need some more plugins to generate build or deployment. 
-###### To Install - Open Jenkins: Manage Jenkins >> Mange Plugins >> Available
-##### List of plugins: 
-  - Android Signing Plugin
-  - Copy Artifact Plugin
-  - GitHub Integration Plugin ( if your project repository are on github otherwise you need plugins for Gitlab, Bitbucket etc.)
-  - Google Play Android Publisher Plugin
-  - Gradle Plugin
-  - Google OAuth Credentials plugin
+   -  If you get status of build success then the apk will stored in your workspace and will look like the given below image
 
-#### Now, After these installations, we ended up with jenkins setup and plugin.
-
-## Set global variables to jenkins (Configure Jenkins)
-#### In this part, we will explore how to set global variable for our jenkins server to use our path of PC/laptop for gradles and builds.
-
-##### Open Jenkins: Manage Jenkins >> Configure System >> Global properties >> Environment variables and add:
-
-#### ANDROID_HOME
-
-ANDROID_HOME : /var/lib/jenkins/android-sdk
-
-You can download Android sdk on jenkins home path to use above given path 
-
-**Reference**: https://www.serverkaka.com/2019/03/generate-android-apk-from-source-code-jenkins.html
-
-Use Image: 
+![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/android_build_apk/ad_build_successful.jpg?raw=true)
 
 
-
-and if you have already on your system then use your system path
-
-ANDROID_HOME : /home/deepanshu/Android/Sdk
-
-Use Image:
-
-#### JAVA_HOME
-
-JAVA_HOME : /usr/lib/jvm/java-8-oracle
-
-
-(If you are developing Flutter project then you need to set and configure Flutter Path also)
-
-Use Image:
-
-**Refrence**: https://medium.com/globant/flutter-jenkins-getting-started-4d2e036567b
-
-
-## Now After Global Variables Setup, Start a new Job to build APK
-### Let's Start with Normal Android APK
-
-
-
-
-
-
+#### If you get error or failure then try to resolve that error or share with us as issues, if any thing is missing in our Documentation.
 
 
 
