@@ -1,69 +1,59 @@
-# New Job and Build android Apk
-### Here, we create a new job for our Android application project
+# Publish android/flutter apk or bundle to Google Play Store
+#### Here, we deploy our release apk and bundles using jenkins server to Google play store
+#### Please, go through the below link for the steps and better understanding you need to do for deployment
 
+Link: https://plugins.jenkins.io/google-play-android-publisher/
 
-#### Dashboard>>New Item>> Enter Item name and select free style project
+## Now start with the Step - 1
 
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_new_item.png?raw=true)
+#### Signing info in Gradle file for release apk or bundle build 
 
+Create new file at root directory of project and name it keystore.properties and enter this 4 entries in it(with your values).
 
-#### Press Ok and Go to Source Code Management -> Check Git and give:
+```
+   storeFile=/key/file/path.jks 
+   keyAlias=key0
+   storePassword=notasecret
+   keyPassword=notasecret
 
+```
 
-   -  Repository URL: Git URL to your repo. Take this URL from Github. It should be a format of https://github.com/{username}/{project_name}.git
+##### Note: 'storeFile' path has .jks file at the time of build apk and be sure the credentials are correct.
 
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_repository_error.jpg?raw=true)
+And reference this file and values in build.gradle like this.
 
+```
+      // Load keystore
+      def keystorePropertiesFile = rootProject.file("/path/to/your/keystore.properties")
+      def keystoreProperties = new Properties()
+      keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+      android {
+      
+      signingConfigs{
+         release {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+               }
+         }
+         buildTypes {
+         release {
+            signingConfig signingConfigs.release
+         ...
+            }
+           }
+      }
+   }
+```
 
-   -  Credentials: Select the one you created now or before. ( username and password of your github account as global properties)
+### Now, Enabling play console API access and getting json file.
 
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_add_credentials.png?raw=true)
-
-   -  Branches to build: branch_name (here /main used)
-
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_choose_credentials.jpg?raw=true)
-
-   -  Additional behavious  - Wipe out repository and force clone the branch before build
-
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_additional_behaviour.png?raw=true)
-  
-  
-### Note:
-#### To use gradlew to build apks you have the following dir. and files in root path of repository as shown in picture
-
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_gradle_structure.png?raw=true)
-  
-   -  Build  - Choose Execute shell and write these commands
-   
-      ```
-         chmod +x gradlew
-         ./gradlew clean
-         ./gradlew assembleDebug
-      ```
-
-   
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_build.png?raw=true)
-
-
-   -  Post Actions  - Choose Archive the artifacts and enter save location for workspace : **/*.apk  and Save.
-
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_post_actions.png?raw=true)
-
-
-   -  Build Job  - Now click Build Job in your project, build starts in seconds and you can see logs on clicking jobs in progess
-
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_build_job.jpg?raw=true)
-
-
-   -  If you get status of build success then the apk will stored in your workspace and will look like the given below image
-
-![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_build_successful.jpg?raw=true)
-
-
-#### If you get error or failure then try to resolve that error or share with us as issues, if any thing is missing in our Documentation.
-
-#### Deploy on playstore Android/Flutter Build Apk/Bundle using git repository, visit this branch :
-  https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/tree/deploy_on_playstore
+   -  Going to API access page in developer console and linking your project by clicking on link.
+   -  We need to set up API access client by creating service account. You will see option to create service account on the same page below under ‘Service Accounts’ section.
+   -  Click on ‘grant access’ and give required permissions.
+   -  Download json
+   -  Add json credentials to jenkins manage credentials
 
 
 
