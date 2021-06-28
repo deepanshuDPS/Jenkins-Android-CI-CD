@@ -62,7 +62,8 @@
 
 #### If you get error or failure then try to resolve that error or share with us as issues, if any thing is missing in our Documentation.
 
-
+#### Deploy on playstore Android/Flutter Build Apk/Bundle using git repository, visit this branch :
+  https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/tree/deploy_on_playstore
 
 
 
