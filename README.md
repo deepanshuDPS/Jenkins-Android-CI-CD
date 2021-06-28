@@ -113,7 +113,9 @@ JAVA_HOME : /usr/lib/jvm/java-8-oracle
   https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/tree/flutter_build_apk
   
 
-
+#### Deploy on playstore Android/Flutter Build Apk/Bundle using git repository, visit this branch :
+  https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/tree/deploy_on_playstore
+  
 
 
 
