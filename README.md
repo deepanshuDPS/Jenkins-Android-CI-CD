@@ -49,12 +49,50 @@ And reference this file and values in build.gradle like this.
 
 ### Now, Enabling play console API access and getting json file.
 
-   -  Going to API access page in developer console and linking your project by clicking on link.
-   -  We need to set up API access client by creating service account. You will see option to create service account on the same page below under ‘Service Accounts’ section.
-   -  Click on ‘grant access’ and give required permissions.
-   -  Download json
-   -  Add json credentials to jenkins manage credentials
+   -  Going to API access page in developer console and linking your project by clicking on link **(Google Play Console -> Settings -> API Access)**.
+         
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/pd_link_to_cloud.png?raw=true)
 
+   - Create A project on **Google Cloud** for Google Play Console to link, if you already have then use that project.
+         
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/pd_project_link_with_console.jpg?raw=true)
+    
+   - Open that project, We need to set up API access client by creating service account. You will see option to create service account on the same page below          under **‘Service Accounts’** section.
+   
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/pd_create_service_account.jpg?raw=true)
+         
+   - Once your service account is set up, go to **Google API Console**, open up credentials from left navigation,
+     click on create credentials -> Service account key -> Choose your service account -> Choose **JSON** and click create.
+     This will download JSON key file in your browser. Do not share this file with anyone.
+     
+     
+     
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/pd_service_ac_created.jpg?raw=true)
+
+     
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/pd_key_section_ad.jpg?raw=true)
+     
+     
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/pd_json_key_create.png?raw=true)
+      
+      
+         
+   -  Now after creating Service Account you need to add App and Grant permissions for the application on **Play Console Api Access Page**.
+
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/pd_linked_google_cloud.jpg?raw=true)
+      
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/pd_link_sevice_account.jpg?raw=true)
+      
+      ##### Add Application
+      
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/pd_add_app_in_service.jpg?raw=true)
+      
+      #### Give Permissions
+
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/pd_give_permissions.jpg?raw=true)
+
+         
+   -  Add json credentials to jenkins manage credentials
 
 
 
