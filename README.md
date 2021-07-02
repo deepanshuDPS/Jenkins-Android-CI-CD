@@ -41,14 +41,27 @@
          ./gradlew assembleDebug
       ```
 
+   ### For release build (also used when you want to deploy using Jenkins to Play Store)
+   
+      ```
+         chmod +x gradlew
+         ./gradlew clean
+         ./gradlew assembleRelease
+      ```
+
    
 ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_build.png?raw=true)
 
-
    -  Post Actions  - Choose Archive the artifacts and enter save location for workspace : **/*.apk  and Save.
+    
+   ### For release build (also used when you want to deploy using Jenkins to Play Store)
+   
+   -  Post Actions - Choose Archive the artifacts and enter save loaction for worksapce: build/app/outputs/apk/release/**.apk and Save.
+
 
 ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_post_actions.png?raw=true)
 
+  
 
    -  Build Job  - Now click Build Job in your project, build starts in seconds and you can see logs on clicking jobs in progess
 
