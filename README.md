@@ -46,12 +46,23 @@
          flutter clean
          flutter build apk
       ```
-
+   ### For release build (also used when you want to deploy using Jenkins to Play Store)
+    
+      ```
+         flutter clean
+         flutter build appbundle
+      ```
    
 ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/flutter_build.png?raw=true)
 
 
    -  Post Actions  - Choose Archive the artifacts and enter save location for workspace : **/*.apk  and Save.
+
+   ### For release build (also used when you want to deploy using Jenkins to Play Store)
+   
+   - Post Actions - Choose Archive the artifacts and enter save loaction for worksapce: build/app/outputs/bundle/release/**.aab and Save.
+
+
 
 ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/ad_post_actions.png?raw=true)
 
