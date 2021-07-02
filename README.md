@@ -92,7 +92,65 @@ And reference this file and values in build.gradle like this.
       ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/pd_give_permissions.jpg?raw=true)
 
          
-   -  Add json credentials to jenkins manage credentials
+  
+
+   ### Now, add the service account credentials to Jenkins
+   
+   -  Navigate to your Jenkins instance. Select "Credentials" from the Jenkins sidebar, at the top-level, or from within the folder where the credential should         live. Choose a credentials domain and click "Add Credentials"
+    
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/jk_manage_credentials.jpg?raw=true)
+      
+
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/jk_add_credential.jpg?raw=true)
+
+    
+   -  From the "Kind" drop-down, choose "Google Service Account from private key". Enter a meaningful name for the credential, as you'll need to select it during       build configuration, or enter it into your Pipeline configuration. Choose the "JSON key" type. Upload the .json file that was downloaded by the Google API         Console. Click "OK" to create the credential.
+   
+   
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/jk_add_json_to_cred.jpg?raw=true)
+      
+      
+ 
+   #### Now, I hope you added all signing info to your build.gradle file and updated the code on your preferred branch.
+   
+   ### Now, let's start deployment to play store.
+   
+   -  Create a new free-style software project. Ensure, via whatever build steps you need, that the file(s) you want to upload will be available in the build's         workspace. Add the "Upload Android AAB/APK to Google Play" post-build action. Select the credential name from the drop-down list. The credential must belong       to the Google Play account which owns the app to be uploaded.
+
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/jk_new_item.png?raw=true)
+      
+   - Copy articrafts from other projects builds.
+  
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/jk_copy_articrafts.jpg?raw=true)
+
+
+   -  Enter paths and/or patterns pointing to the AAB or APKs to be uploaded
+        This can be a glob pattern, e.g. 'build/app/outputs/apk/release/**.apk' for release apk and 'build/app/outputs/bundle/release/**.aab' for release bundle
+        
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/jk_selecting_cred.jpg?raw=true)
+
+    
+   -  Enter the release track to which the files should be assigned. This can be a built-in track like 'production', a testing track like 'beta', or a custom           track name. Note that custom track names are case-sensitive (though the plugin will attempt to determine the correct track). Optionally specify an in-app         update priority.
+
+      ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/jk_selecting_track.png?raw=true)
+
+
+   -  If nothing is entered, the default value (0, lowest priority) will be set by Google Play. 
+      As shown in above image, Optionally choose "Add language" to associate release notes with the uploaded file(s).
+       
+   - Build the project and open the build console to get status of deployment.
+
+       ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/jk_build_to_store.jpg?raw=true)
+
+
+       ![alt_text](https://github.com/deepanshuDPS/Jenkins-Android-CI-CD/blob/main/jk_build_console.jpg?raw=true)
+
+      
+ 
+ ## If you get error or failure then try to resolve that error or share with us as issues, if any thing is missing in our Documentation.
+ 
+ ### Thank You
+
 
 
 
